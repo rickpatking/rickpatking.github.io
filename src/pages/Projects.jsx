@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Folder } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
+import TiltCard from '../components/TiltCard';
 import { projects } from '../data/projects';
 
 const containerVariants = {
@@ -45,13 +46,13 @@ export default function Projects() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="mb-12"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-stone-900 dark:text-white">
               Projects
             </h1>
-            <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full mb-6" />
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full mb-6" />
+            <p className="text-stone-600 dark:text-stone-400 max-w-2xl">
               A collection of projects showcasing my skills in data science,
               machine learning, and software development.
             </p>
@@ -62,14 +63,14 @@ export default function Projects() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-2 mb-12"
+            className="flex flex-wrap gap-2 mb-12"
           >
             <button
               onClick={() => setFilter('All')}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 filter === 'All'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700'
               }`}
             >
               All
@@ -80,8 +81,8 @@ export default function Projects() {
                 onClick={() => setFilter(tech)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   filter === tech
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700'
                 }`}
               >
                 {tech}
@@ -89,7 +90,7 @@ export default function Projects() {
             ))}
           </motion.div>
 
-          {/* Projects Grid */}
+          {/* Projects Grid - Bento style with varied sizes */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -97,71 +98,75 @@ export default function Projects() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <AnimatePresence mode="wait">
-              {filteredProjects.map((project) => (
+              {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   variants={cardVariants}
                   layout
-                  className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50 hover:shadow-xl transition-all duration-300"
+                  className={index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}
                 >
-                  {/* Project Image/Placeholder */}
-                  <div className="relative h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-blue-500/10 dark:to-purple-500/10 flex items-center justify-center overflow-hidden">
-                    <Folder className="w-16 h-16 text-blue-500/50" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
+                  <TiltCard>
+                    <div className="group bg-white dark:bg-stone-900 rounded-2xl overflow-hidden shadow-lg border border-stone-200 dark:border-stone-800 hover:border-orange-500/50 transition-all duration-300 h-full">
+                      {/* Project Image/Placeholder */}
+                      <div className={`relative ${index === 0 ? 'h-64' : 'h-48'} bg-gradient-to-br from-orange-500/10 to-green-500/10 dark:from-orange-500/5 dark:to-green-500/5 flex items-center justify-center overflow-hidden`}>
+                        <Folder className="w-16 h-16 text-orange-500/30" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">
-                      {project.description}
-                    </p>
+                      {/* Content */}
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold mb-2 text-stone-900 dark:text-white group-hover:text-orange-500 transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className={`text-sm text-stone-600 dark:text-stone-400 mb-4 ${index === 0 ? '' : 'line-clamp-3'}`}>
+                          {project.description}
+                        </p>
 
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded">
-                          +{project.technologies.length - 4}
-                        </span>
-                      )}
+                        {/* Technologies */}
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.technologies.slice(0, index === 0 ? 6 : 4).map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs rounded font-mono"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {project.technologies.length > (index === 0 ? 6 : 4) && (
+                            <span className="px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs rounded">
+                              +{project.technologies.length - (index === 0 ? 6 : 4)}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Links */}
+                        <div className="flex items-center gap-4">
+                          {project.github && (
+                            <motion.a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              whileHover={{ scale: 1.1 }}
+                              className="text-stone-600 dark:text-stone-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
+                            >
+                              <Github className="w-5 h-5" />
+                            </motion.a>
+                          )}
+                          {project.demo && (
+                            <motion.a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              whileHover={{ scale: 1.1 }}
+                              className="text-stone-600 dark:text-stone-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
+                            >
+                              <ExternalLink className="w-5 h-5" />
+                            </motion.a>
+                          )}
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Links */}
-                    <div className="flex items-center gap-4">
-                      {project.github && (
-                        <motion.a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.1 }}
-                          className="text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                        >
-                          <Github className="w-5 h-5" />
-                        </motion.a>
-                      )}
-                      {project.demo && (
-                        <motion.a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.1 }}
-                          className="text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                        >
-                          <ExternalLink className="w-5 h-5" />
-                        </motion.a>
-                      )}
-                    </div>
-                  </div>
+                  </TiltCard>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -171,7 +176,7 @@ export default function Projects() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center text-slate-500 dark:text-slate-400 mt-8"
+              className="text-center text-stone-500 dark:text-stone-400 mt-8"
             >
               No projects found with this filter.
             </motion.p>

@@ -58,13 +58,13 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="mb-12"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-stone-900 dark:text-white">
               Get in Touch
             </h1>
-            <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full mb-6" />
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full mb-6" />
+            <p className="text-stone-600 dark:text-stone-400 max-w-2xl">
               Have a question or want to work together? Feel free to reach out!
             </p>
           </motion.div>
@@ -76,7 +76,7 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+              <h2 className="text-2xl font-bold mb-6 text-stone-900 dark:text-white">
                 Contact Information
               </h2>
 
@@ -84,24 +84,24 @@ export default function Contact() {
                 {contactInfo.map((info) => (
                   <div
                     key={info.label}
-                    className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50"
+                    className="flex items-center gap-4 p-4 bg-white dark:bg-stone-900 rounded-xl shadow-lg border border-stone-200 dark:border-stone-800"
                   >
-                    <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                      <info.icon className="w-5 h-5 text-blue-500" />
+                    <div className="p-3 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                      <info.icon className="w-5 h-5 text-orange-500" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                      <p className="text-sm text-stone-500 dark:text-stone-400">
                         {info.label}
                       </p>
                       {info.href ? (
                         <a
                           href={info.href}
-                          className="text-slate-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                          className="text-stone-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-slate-900 dark:text-white">{info.value}</p>
+                        <p className="text-stone-900 dark:text-white">{info.value}</p>
                       )}
                     </div>
                   </div>
@@ -109,7 +109,7 @@ export default function Contact() {
               </div>
 
               {/* Social Links */}
-              <h3 className="text-lg font-semibold mb-4 text-slate-900 dark:text-white">
+              <h3 className="text-lg font-semibold mb-4 text-stone-900 dark:text-white">
                 Connect with me
               </h3>
               <div className="flex gap-4">
@@ -121,7 +121,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-4 bg-white dark:bg-slate-800 rounded-xl shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50 text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    className="p-4 bg-white dark:bg-stone-900 rounded-xl shadow-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                   >
                     <social.icon className="w-6 h-6" />
                   </motion.a>
@@ -135,7 +135,7 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+              <h2 className="text-2xl font-bold mb-6 text-stone-900 dark:text-white">
                 Send a Message
               </h2>
 
@@ -143,7 +143,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                    className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2"
                   >
                     Name
                   </label>
@@ -154,7 +154,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder-slate-400"
+                    className="w-full px-4 py-3 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-stone-900 dark:text-white placeholder-stone-400"
                     placeholder="Your name"
                   />
                 </div>
@@ -162,7 +162,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                    className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2"
                   >
                     Email
                   </label>
@@ -173,7 +173,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder-slate-400"
+                    className="w-full px-4 py-3 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-stone-900 dark:text-white placeholder-stone-400"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -181,7 +181,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                    className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2"
                   >
                     Message
                   </label>
@@ -192,7 +192,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none text-slate-900 dark:text-white placeholder-slate-400"
+                    className="w-full px-4 py-3 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all resize-none text-stone-900 dark:text-white placeholder-stone-400"
                     placeholder="Your message..."
                   />
                 </div>
@@ -202,7 +202,7 @@ export default function Contact() {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-400 text-white rounded-xl font-medium flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 transition-colors"
+                  className="w-full px-6 py-3 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-400 text-white rounded-xl font-medium flex items-center justify-center gap-2 shadow-lg shadow-orange-500/25 transition-colors"
                 >
                   {isSubmitting ? (
                     <>
