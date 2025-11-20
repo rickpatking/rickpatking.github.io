@@ -19,10 +19,10 @@ const itemVariants = {
 };
 
 const skillCategories = [
-  { title: 'Languages', items: skills.languages, icon: Code },
-  { title: 'Libraries', items: skills.libraries, icon: BarChart3 },
-  { title: 'Tools', items: skills.tools, icon: Database },
-  { title: 'Certificates', items: skills.certificates, icon: Award },
+  { title: 'Languages', items: skills.languages, icon: Code, color: 'orange' },
+  { title: 'Libraries', items: skills.libraries, icon: BarChart3, color: 'green' },
+  { title: 'Tools', items: skills.tools, icon: Database, color: 'orange' },
+  { title: 'Certificates', items: skills.certificates, icon: Award, color: 'green' },
 ];
 
 export default function About() {
@@ -35,12 +35,12 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            className="mb-16"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-stone-900 dark:text-white">
               About Me
             </h1>
-            <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full" />
+            <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full" />
           </motion.div>
 
           {/* Bio Section */}
@@ -48,18 +48,18 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-3xl mx-auto mb-16"
+            className="max-w-3xl mb-16"
           >
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl shadow-slate-200/50 dark:shadow-slate-900/50">
-              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            <div className="bg-white dark:bg-stone-900 rounded-2xl p-8 shadow-xl border border-stone-200 dark:border-stone-800">
+              <p className="text-lg text-stone-600 dark:text-stone-300 leading-relaxed mb-6">
                 I'm {personalInfo.name}, a {personalInfo.title} at the {education.school},
-                pursuing a {education.degree}. With a {education.gpa} GPA, I'm passionate about
+                pursuing a {education.degree}. With a <span className="text-orange-500 font-semibold">{education.gpa}</span> GPA, I'm passionate about
                 leveraging data to solve complex problems and uncover meaningful insights.
               </p>
-              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-lg text-stone-600 dark:text-stone-300 leading-relaxed">
                 My experience spans from building end-to-end data pipelines and interactive
                 dashboards to developing predictive models with machine learning. I'm particularly
-                interested in sports analytics and computational geometry, where I can combine my
+                interested in <span className="text-green-500">sports analytics</span> and computational geometry, where I can combine my
                 technical skills with my curiosity for real-world applications.
               </p>
             </div>
@@ -77,13 +77,13 @@ export default function About() {
               <motion.div
                 key={category.title}
                 variants={itemVariants}
-                className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50 hover:shadow-xl transition-shadow"
+                className="bg-white dark:bg-stone-900 rounded-2xl p-6 shadow-lg border border-stone-200 dark:border-stone-800 hover:border-orange-500/50 transition-all"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                    <category.icon className="w-5 h-5 text-blue-500" />
+                  <div className={`p-2 rounded-lg ${category.color === 'orange' ? 'bg-orange-100 dark:bg-orange-900/30' : 'bg-green-100 dark:bg-green-900/30'}`}>
+                    <category.icon className={`w-5 h-5 ${category.color === 'orange' ? 'text-orange-500' : 'text-green-500'}`} />
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-stone-900 dark:text-white">
                     {category.title}
                   </h3>
                 </div>
@@ -92,7 +92,7 @@ export default function About() {
                     <motion.span
                       key={skill}
                       whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded-lg"
+                      className="px-3 py-1.5 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-sm rounded-lg font-mono"
                     >
                       {skill}
                     </motion.span>
@@ -110,33 +110,33 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="mt-16"
           >
-            <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white text-center">
+            <h2 className="text-2xl font-bold mb-6 text-stone-900 dark:text-white">
               Education
             </h2>
-            <div className="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50">
+            <div className="max-w-2xl bg-white dark:bg-stone-900 rounded-2xl p-6 shadow-lg border border-stone-200 dark:border-stone-800">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-stone-900 dark:text-white">
                     {education.degree}
                   </h3>
-                  <p className="text-blue-500 dark:text-blue-400">
+                  <p className="text-orange-500">
                     {education.school}
                   </p>
                 </div>
-                <div className="text-sm text-slate-500 dark:text-slate-400 mt-2 sm:mt-0">
+                <div className="text-sm text-stone-500 dark:text-stone-400 mt-2 sm:mt-0">
                   <p>{education.period}</p>
-                  <p className="font-semibold">{education.gpa} GPA</p>
+                  <p className="font-semibold text-green-500">{education.gpa} GPA</p>
                 </div>
               </div>
               <div>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                <p className="text-sm text-stone-600 dark:text-stone-400 mb-2">
                   Relevant Coursework:
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {education.coursework.map((course) => (
                     <span
                       key={course}
-                      className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded"
+                      className="px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs rounded font-mono"
                     >
                       {course}
                     </span>
