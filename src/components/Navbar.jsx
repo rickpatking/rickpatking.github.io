@@ -43,10 +43,8 @@ export default function Navbar() {
     >
       <div className="px-6 sm:px-12 lg:px-20">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <a href="#home" className="text-lg font-bold text-white">
-            PK
-          </a>
+          {/* Spacer for balance */}
+          <div className="w-8" />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -54,7 +52,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-xs uppercase tracking-widest transition-colors ${
+                className={`text-xs uppercase tracking-[0.2em] transition-colors font-bold ${
                   activeSection === link.href.slice(1)
                     ? 'text-white'
                     : 'text-white/50 hover:text-white'
@@ -84,10 +82,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed inset-0 bg-[#050505] z-50"
+            className="md:hidden fixed inset-0 bg-[#0d2438] z-50"
           >
-            <div className="px-6 py-6 flex justify-between items-center">
-              <span className="text-lg font-bold text-white">PK</span>
+            <div className="px-6 py-6 flex justify-end items-center">
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 text-white"
@@ -104,7 +101,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="block text-4xl font-bold text-white hover:text-[#FA4616] transition-colors"
+                  className="block text-4xl font-bold text-[#f5f0e8] hover:text-[#e85d3b] transition-colors uppercase"
                 >
                   {link.label}
                 </motion.a>

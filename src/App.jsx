@@ -56,7 +56,11 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-[#0d2438] relative">
+      {/* Noise overlay */}
+      <div className="noise-overlay" />
+
+      {/* Main content */}
       <Navbar />
       <main>
         <HomeSection />
@@ -71,7 +75,7 @@ function App() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#FA4616] text-white px-6 py-3 rounded-lg z-50 text-sm font-medium"
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#e85d3b] text-[#f5f0e8] px-6 py-3 rounded-lg z-50 text-sm font-bold uppercase tracking-widest"
         >
           Go Gators!
         </motion.div>

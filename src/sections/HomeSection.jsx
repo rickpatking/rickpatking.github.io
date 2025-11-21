@@ -1,125 +1,85 @@
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
-import { personalInfo, skills } from '../data/projects';
+import { personalInfo } from '../data/projects';
+import MagneticButton from '../components/MagneticButton';
 
 export default function HomeSection() {
   return (
-    <section id="home" className="min-h-screen flex flex-col relative bg-[#050505]">
-      {/* Main hero content */}
-      <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 lg:px-20 pt-24 pb-32">
-        {/* Massive name */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8"
-        >
-          <h1 className="display-huge font-bold tracking-tighter">
-            <span className="block text-white">{personalInfo.name.split(' ')[0]}</span>
-            <span className="block text-[#888888]">{personalInfo.name.split(' ')[1]}</span>
-          </h1>
-        </motion.div>
-
-        {/* Role and location */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 mb-12"
-        >
-          <p className="text-xl sm:text-2xl text-[#888888]">
-            {personalInfo.title}
-          </p>
-          <span className="hidden sm:block w-12 h-px bg-[#333333]" />
-          <p className="text-xl sm:text-2xl text-[#555555]">
-            University of Florida
-          </p>
-        </motion.div>
-
-        {/* Statement */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg sm:text-xl text-[#666666] max-w-2xl leading-relaxed mb-16"
-        >
-          I transform complex data into actionable insights, building predictive models
-          and interactive dashboards that drive decision-making.
-        </motion.p>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap gap-6"
-        >
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-3 text-white hover:text-[#FA4616] transition-colors"
-          >
-            <span className="text-sm uppercase tracking-widest">View Work</span>
-            <span className="w-8 h-px bg-current group-hover:w-12 transition-all" />
-          </a>
-          <a
-            href={personalInfo.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 text-[#666666] hover:text-white transition-colors"
-          >
-            <span className="text-sm uppercase tracking-widest">GitHub</span>
-            <span className="w-8 h-px bg-current group-hover:w-12 transition-all" />
-          </a>
-          <a
-            href={personalInfo.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 text-[#666666] hover:text-white transition-colors"
-          >
-            <span className="text-sm uppercase tracking-widest">LinkedIn</span>
-            <span className="w-8 h-px bg-current group-hover:w-12 transition-all" />
-          </a>
-        </motion.div>
+    <section id="home" className="min-h-screen relative bg-[#f5f0e8] overflow-hidden">
+      {/* Hub-Tones inspired vertical bars */}
+      <div className="absolute top-0 left-[8%] h-full flex gap-3">
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <motion.div
+            key={i}
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className={`w-4 lg:w-6 origin-top ${i === 3 ? 'bg-[#e85d3b]' : 'bg-[#0d2438]'}`}
+            style={{ height: `${60 + i * 8}%` }}
+          />
+        ))}
       </div>
 
-      {/* Skills marquee */}
-      <div className="border-t border-[#1a1a1a] overflow-hidden py-6">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {[...skills.languages, ...skills.libraries, ...skills.tools, ...skills.languages, ...skills.libraries, ...skills.tools].map((skill, i) => (
-            <span key={i} className="mx-8 text-sm text-[#444444] font-mono">
-              {skill}
-            </span>
-          ))}
+      {/* Content - positioned to the right of bars */}
+      <div className="min-h-screen relative z-10 flex flex-col justify-between p-8 lg:p-16">
+
+        {/* Top spacer */}
+        <div className="h-8" />
+
+        {/* Center right - Name like Midnight Blue typography */}
+        <div className="flex justify-end">
+          <div className="text-right mr-[5%]">
+            {/* First name - MASSIVE */}
+            <motion.h1
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[20vw] lg:text-[18vw] font-black uppercase leading-[0.75] tracking-tighter text-[#0d2438]"
+            >
+              {personalInfo.name.split(' ')[0]}
+            </motion.h1>
+
+            {/* Last name - orange accent */}
+            <motion.p
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[8vw] lg:text-[6vw] font-black uppercase tracking-tight text-[#e85d3b] -mt-2"
+            >
+              {personalInfo.name.split(' ')[1]}
+            </motion.p>
+
+            {/* Role */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="text-xs uppercase tracking-[0.3em] text-[#0d2438]/60 mt-4"
+            >
+              {personalInfo.title}
+            </motion.p>
+          </div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.a
-        href="#about"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
+        {/* Bottom - links and GPA */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4 }}
+          className="flex justify-between items-end"
         >
-          <ArrowDown className="w-5 h-5 text-[#444444]" />
-        </motion.div>
-      </motion.a>
-
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-12 lg:right-24 hidden lg:block">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="text-right"
-        >
-          <p className="text-6xl font-bold text-[#111111]">4.0</p>
-          <p className="text-xs text-[#444444] uppercase tracking-widest mt-2">GPA</p>
+          {/* Links */}
+          <div className="flex gap-6 ml-[45%] lg:ml-[35%]">
+            <MagneticButton>
+              <a href="#projects" className="text-[10px] uppercase tracking-[0.3em] text-[#0d2438] hover:text-[#e85d3b] transition-colors font-medium">
+                Work
+              </a>
+            </MagneticButton>
+            <MagneticButton>
+              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-[0.3em] text-[#0d2438]/60 hover:text-[#e85d3b] transition-colors">
+                GitHub
+              </a>
+            </MagneticButton>
+          </div>
         </motion.div>
       </div>
     </section>
