@@ -1,111 +1,96 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { personalInfo, education } from '../data/projects';
+import { personalInfo } from '../data/projects';
+import MagneticButton from '../components/MagneticButton';
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="min-h-screen bg-[#050505] py-32 flex flex-col">
-      {/* Main content */}
-      <div className="flex-1 px-6 sm:px-12 lg:px-20">
-        {/* Header */}
+    <section id="contact" className="min-h-screen bg-[#e85d3b] relative overflow-hidden">
+      {/* Bold shape - bottom left */}
+      <motion.div
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#0d2438] rounded-full"
+      />
+
+      {/* Content */}
+      <div className="min-h-screen relative z-10 flex flex-col justify-between p-8 lg:p-16">
+
+        {/* Top - Section title */}
+        <motion.h2
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-[15vw] lg:text-[12vw] font-black uppercase leading-[0.75] tracking-tighter text-[#0d2438]"
+        >
+          Contact
+        </motion.h2>
+
+        {/* Center - Email prominent, moved right */}
+        <div className="flex-1 flex items-center justify-end">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-right mr-[10%]"
+          >
+            <p className="text-[9px] uppercase tracking-[0.4em] text-[#0d2438]/60 mb-4">
+              Get in touch
+            </p>
+            <MagneticButton>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="inline-flex items-center gap-3 text-xl lg:text-3xl font-bold text-[#0d2438] hover:text-[#f5f0e8] transition-colors"
+              >
+                {personalInfo.email}
+                <ArrowUpRight className="w-6 h-6" />
+              </a>
+            </MagneticButton>
+          </motion.div>
+        </div>
+
+        {/* Bottom - Links */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20"
+          transition={{ delay: 0.5 }}
+          className="flex justify-between items-end"
         >
-          <p className="text-sm text-[#555555] uppercase tracking-widest mb-8">Contact</p>
-          <h2 className="display-large font-bold text-white max-w-4xl">
-            Let's work<br />
-            <span className="text-[#555555]">together</span>
-          </h2>
-        </motion.div>
-
-        {/* Contact info grid */}
-        <div className="grid lg:grid-cols-2 gap-20 mb-20">
-          {/* Left - Email CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="text-lg text-[#666666] mb-8 max-w-md">
-              Have a project in mind or want to discuss opportunities?
-              I'm always open to new challenges and collaborations.
-            </p>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="group inline-flex items-center gap-4 text-2xl lg:text-3xl text-white hover:text-[#FA4616] transition-colors"
-            >
-              <span className="font-mono">{personalInfo.email}</span>
-              <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </a>
-          </motion.div>
-
-          {/* Right - Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-6"
-          >
-            <div>
-              <p className="text-sm text-[#555555] uppercase tracking-widest mb-3">Phone</p>
+          {/* Social links */}
+          <div className="flex gap-6">
+            <MagneticButton>
               <a
-                href={`tel:${personalInfo.phone}`}
-                className="text-xl text-[#888888] hover:text-white transition-colors font-mono"
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] uppercase tracking-[0.3em] text-[#0d2438]/70 hover:text-[#f5f0e8] transition-colors"
               >
-                {personalInfo.phone}
+                GitHub
               </a>
-            </div>
-            <div>
-              <p className="text-sm text-[#555555] uppercase tracking-widest mb-3">Location</p>
-              <p className="text-xl text-[#888888] font-mono">{education.location}</p>
-            </div>
-            <div className="pt-4">
-              <p className="text-sm text-[#555555] uppercase tracking-widest mb-4">Connect</p>
-              <div className="flex gap-6">
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#666666] hover:text-white transition-colors text-sm uppercase tracking-widest"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#666666] hover:text-white transition-colors text-sm uppercase tracking-widest"
-                >
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
+            </MagneticButton>
+            <MagneticButton>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] uppercase tracking-[0.3em] text-[#0d2438]/70 hover:text-[#f5f0e8] transition-colors"
+              >
+                LinkedIn
+              </a>
+            </MagneticButton>
+          </div>
 
-      {/* Large decorative email */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        className="overflow-hidden border-t border-[#1a1a1a] py-12"
-      >
-        <div className="animate-marquee whitespace-nowrap">
-          {[1, 2, 3, 4].map((i) => (
-            <span key={i} className="text-6xl lg:text-8xl font-bold text-[#111111] mx-8">
-              {personalInfo.email}
-            </span>
-          ))}
-        </div>
-      </motion.div>
+          {/* Copyright */}
+          <p className="text-[9px] uppercase tracking-[0.3em] text-[#0d2438]/50">
+            © {new Date().getFullYear()}
+          </p>
+        </motion.div>
+      </div>
     </section>
   );
 }

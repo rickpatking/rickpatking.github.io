@@ -3,135 +3,88 @@ import { skills, education } from '../data/projects';
 
 export default function AboutSection() {
   return (
-    <section id="about" className="min-h-screen bg-[#050505] py-32">
-      {/* Large statement */}
-      <div className="px-6 sm:px-12 lg:px-20 mb-32">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <p className="text-sm text-[#555555] uppercase tracking-widest mb-8">About</p>
-          <h2 className="display-large font-bold text-white max-w-5xl">
-            I build systems that turn{' '}
-            <span className="text-[#555555]">raw data</span>{' '}
-            into{' '}
-            <span className="text-[#FA4616]">strategic insights</span>
-          </h2>
-        </motion.div>
-      </div>
+    <section id="about" className="min-h-screen bg-[#f5f0e8] relative overflow-hidden">
+      {/* Horace Silver style diagonal shapes */}
+      <motion.div
+        initial={{ x: '-100%', rotate: 0 }}
+        whileInView={{ x: 0, rotate: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute top-[10%] left-[5%] w-[250px] h-[300px] bg-[#e85d3b]"
+        style={{ transform: 'rotate(-15deg)' }}
+      />
 
-      {/* Two column layout */}
-      <div className="px-6 sm:px-12 lg:px-20 grid lg:grid-cols-2 gap-20 mb-32">
-        {/* Left - Bio */}
+      <motion.div
+        initial={{ x: '100%' }}
+        whileInView={{ x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-[25%] right-[10%] w-[200px] h-[250px] bg-[#0d2438]"
+        style={{ transform: 'rotate(10deg)' }}
+      />
+
+      {/* Content */}
+      <div className="min-h-screen relative z-10 flex flex-col p-8 lg:p-16">
+
+        {/* Title - positioned clearly */}
+        <motion.h2
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="text-[15vw] lg:text-[12vw] font-black uppercase leading-[0.75] tracking-tighter text-[#0d2438] self-end mr-[10%]"
+        >
+          About
+        </motion.h2>
+
+        {/* Bio - center */}
+        <div className="flex-1 flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="max-w-lg text-center px-8"
+          >
+            <p className="text-lg lg:text-xl text-[#0d2438] leading-relaxed mb-6">
+              Data Science student at UF, focused on machine learning and statistical modeling.
+            </p>
+            <p className="text-sm text-[#0d2438]/60 leading-relaxed">
+              Building predictive models for sports analytics and computational geometry.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Bottom - Skills and education */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.6 }}
+          className="flex justify-between items-end pb-4"
         >
-          <p className="text-lg text-[#888888] leading-relaxed mb-8">
-            Currently pursuing a BS in Data Science at the University of Florida,
-            I specialize in machine learning, statistical analysis, and building
-            end-to-end data pipelines.
-          </p>
-          <p className="text-lg text-[#666666] leading-relaxed">
-            My work spans sports analytics, computational geometry, and predictive
-            modeling—always focused on extracting meaningful patterns from complex datasets.
-          </p>
-        </motion.div>
-
-        {/* Right - Education */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="border-l border-[#222222] pl-8">
-            <p className="text-sm text-[#555555] uppercase tracking-widest mb-4">Education</p>
-            <h3 className="text-2xl font-bold text-white mb-2">{education.degree}</h3>
-            <p className="text-[#888888] mb-4">{education.school}</p>
-            <div className="flex items-center gap-6">
-              <div>
-                <p className="text-3xl font-bold text-[#FA4616]">{education.gpa}</p>
-                <p className="text-xs text-[#555555] uppercase tracking-widest">GPA</p>
-              </div>
-              <div className="w-px h-12 bg-[#222222]" />
-              <div>
-                <p className="text-lg text-[#666666]">{education.period}</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Skills sections */}
-      <div className="border-t border-[#1a1a1a]">
-        {/* Languages */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="px-6 sm:px-12 lg:px-20 py-12 border-b border-[#1a1a1a]"
-        >
-          <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <p className="text-sm text-[#555555] uppercase tracking-widest w-32 flex-shrink-0">
-              Languages
+          {/* Skills */}
+          <div>
+            <p className="text-[9px] uppercase tracking-[0.4em] text-[#e85d3b] mb-3">
+              Stack
             </p>
-            <div className="flex flex-wrap gap-4">
-              {skills.languages.map((skill) => (
-                <span key={skill} className="text-xl text-[#888888] font-mono">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Libraries */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="px-6 sm:px-12 lg:px-20 py-12 border-b border-[#1a1a1a]"
-        >
-          <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <p className="text-sm text-[#555555] uppercase tracking-widest w-32 flex-shrink-0">
-              Libraries
+            <p className="text-sm font-bold text-[#0d2438] tracking-tight">
+              {skills.languages.slice(0, 3).join(' / ')}
             </p>
-            <div className="flex flex-wrap gap-4">
-              {skills.libraries.map((skill) => (
-                <span key={skill} className="text-xl text-[#888888] font-mono">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Tools */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="px-6 sm:px-12 lg:px-20 py-12"
-        >
-          <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <p className="text-sm text-[#555555] uppercase tracking-widest w-32 flex-shrink-0">
-              Tools
+            <p className="text-xs text-[#0d2438]/60 mt-1">
+              {skills.libraries.slice(0, 3).join(' · ')}
             </p>
-            <div className="flex flex-wrap gap-4">
-              {skills.tools.map((skill) => (
-                <span key={skill} className="text-xl text-[#888888] font-mono">
-                  {skill}
-                </span>
-              ))}
-            </div>
+          </div>
+
+          {/* Education - at bottom, clear of shapes */}
+          <div className="text-right">
+            <p className="text-4xl lg:text-5xl font-black text-[#0d2438]">
+              {education.gpa}
+            </p>
+            <p className="text-[8px] uppercase tracking-[0.4em] text-[#0d2438]/50">GPA</p>
+            <p className="text-[9px] uppercase tracking-[0.3em] text-[#0d2438]/50 mt-1">
+              {education.school}
+            </p>
           </div>
         </motion.div>
       </div>
